@@ -1,24 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import FullLogo from './assets/FullLogo';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="landing">
+      <FullLogo className='landing_full-logo'/>
+      <div><p>halser is place for upcoming writers to share their knowledge and ideas with like-minded individuals. Connect and contribute to the community with your personality and brighten the days of others.</p><button>Join us!</button></div>
+      <div></div>
     </div>
   );
 }
