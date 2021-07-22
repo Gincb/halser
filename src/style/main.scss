@@ -1,0 +1,4 @@
+// import all the other sass files except the app.scss here.
+@use '../style/mediaQueriesMixin.scss';
+@use '../style/variables.scss';
+@use '../style/typography.scss';

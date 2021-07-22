@@ -1,3 +1,7 @@
+@use './style/main.scss';
+@use './style/variables.scss' as *;
+@use './style/mediaQueriesMixin.scss' as *;
+
 .landing {
   display: flex;
   flex-direction: column;
