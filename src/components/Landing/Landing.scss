@@ -42,12 +42,17 @@
     width: 90%;
     margin-bottom: 2em;
 
+    @include mediaQuery(phone_large) {
+      width: 80%;
+    }
+
     @include mediaQuery(laptop) {
       width: 70%;
     }
 
     > img {
       width: 100%;
+      object-fit: contain ;
     }
   }
 }
