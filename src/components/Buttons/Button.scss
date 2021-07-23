@@ -1,0 +1,9 @@
+@use '../../style/variables.scss' as *;
+@use '../../style/mediaQueriesMixin.scss' as *;
+
+.button {
+  padding: 0.5em 5em;
+  background-color: $light-green;
+  border-radius: $button-radius;
+  border: none;
+}
