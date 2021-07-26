@@ -1,6 +1,6 @@
 import app from '../FirebaseApp';
 
-function Landing() {
+function Home() {
   function handleSignOut() {
     //sign out from the app
     app.auth().signOut();
@@ -14,4 +14,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default Home;

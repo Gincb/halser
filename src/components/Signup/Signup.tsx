@@ -1,12 +1,23 @@
-import { useCallback, useState } from "react"
-import { withRouter } from "react-router"
+import { useCallback, useState, useContext } from "react"
+import { withRouter, Redirect } from "react-router"
 import FirebaseApp from "../FirebaseApp"
-import { Link } from "react-router-dom"
+import { RouteComponentProps } from 'react-router-dom';
+import { AuthContext } from '../../Auth';
 import FullLogo from "../../assets/FullLogo"
 import Button from "../Buttons/Button"
 
-function SignUp({ history }: { history: any }) {
-  const [formElementErr, setFormeElementErr] = useState<null | string>(null)
+export type Props = {
+  history: RouteComponentProps['history'];
+  location: RouteComponentProps['location'];
+  match: RouteComponentProps['match'];
+};
+
+function SignUp(props: Props) {
+  const [signupFormElementErr, setSignupFormElementErr] = useState<null | string>(null)
+  const [loginFormElementErr, setLoginFormElementErr] = useState<null | string>(null)
+
+  const { history } = props;
+
   const handleSignup = useCallback(
     async (e) => {
       e.preventDefault()
@@ -21,15 +32,46 @@ function SignUp({ history }: { history: any }) {
           )
           history.push("/")
         } else {
-          setFormeElementErr("Passwords do not Match")
+          setSignupFormElementErr("Your passwords do not match")
         }
       } catch (err) {
-        setFormeElementErr(err.message)
-        throw new Error(err.message)
+        setSignupFormElementErr(err.message)
       }
     },
     [history]
   )
+
+  const LoginFormErrorMessages: {[key:string]:string} = {
+    ['auth/invalid-email']: 'Email is invalid',
+    ['auth/user-disabled']: 'Email is disabled',
+    ['auth/user-not-found']: "Email doesn't exist",
+    ['auth/wrong-password']: 'Wrong Password',
+  };
+
+  const handleLogin = useCallback(
+    async e => {
+      e.preventDefault();
+      const { email, password } = e.target.elements;
+
+      try {
+        await FirebaseApp
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value);
+        setTimeout(() => {
+          history.push('/');
+        }, 400);
+      } catch (err) {
+        setLoginFormElementErr(LoginFormErrorMessages[err.code] || err.message);
+      }
+    },
+    [history]
+  );
+
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser)
+  if (currentUser) {
+    <Redirect to='/home' />;
+  }
 
   return (
     <div className="account">
@@ -37,19 +79,21 @@ function SignUp({ history }: { history: any }) {
       <section className="account_creation">
         <article className="account_creation_signup">
           <h1>signup</h1>
-          {formElementErr && (
-            <div style={{ color: "red" }}> {formElementErr}</div>
-          )}
+          
           <form onSubmit={handleSignup}>
-              <input type="text" name="username" placeholder="username" />
+          {signupFormElementErr && (
+            <div className='account_creation_signup_error'> {signupFormElementErr}</div>
+          )}
+              <input type="text" name="username" required placeholder="username" />
 
-              <input type="email" name="email" placeholder="email" />
+              <input type="email" name="email" required placeholder="email" />
 
-              <input type="password" name="password" placeholder="password" />
+              <input type="password" name="password" minLength={6} required placeholder="password" />
 
               <input
                 type="password"
                 name="confirmPassword"
+                minLength={6} required
                 placeholder="confirm password"
               />
               <Button buttonText='Signup'/>
@@ -58,13 +102,14 @@ function SignUp({ history }: { history: any }) {
         <span>-or-</span>
         <article className="account_creation_login">
           <h1>login</h1>
-          {formElementErr && (
-            <div style={{ color: "red" }}> {formElementErr}</div>
+          
+          <form onSubmit={handleLogin}>
+          {loginFormElementErr && (
+            <div className='account_creation_login_error'> {loginFormElementErr}</div>
           )}
-          <form onSubmit={handleSignup}>
-              <input type="email" name="email" placeholder="email" />
+              <input type="email" name="email" required placeholder="email" />
 
-              <input type="password" name="password" placeholder="password" />
+              <input type="password" name="password"  minLength={6} required  placeholder="password" />
             <Button buttonText='Login'/>
           </form>
         </article>

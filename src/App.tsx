@@ -10,8 +10,8 @@ function App() {
     <Router>
       <div className='App'>
         <Switch>
-          <PrivateRoute exact path='/home' component={Home} />
-          <Route exact path='/' component={Landing} />
+          <PrivateRoute exact path='/' component={Home} />
+          <Route exact path='/halser' component={Landing} />
           <Route path='/signup' component={SignUp} />
         </Switch>
       </div>
