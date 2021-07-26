@@ -1,9 +1,13 @@
 import { useCallback, useState, useContext } from "react"
 import { withRouter, Redirect } from "react-router"
-import FirebaseApp from "../FirebaseApp"
+import firebaseApp, {auth, createUserDocument} from "../FirebaseApp"
 import { RouteComponentProps } from "react-router-dom"
 import { AuthContext } from "../../Auth"
 import Button from "../Buttons/Button"
+
+export type formErrorTypes = {
+  [key: string]: string;
+};
 
 export type Props = {
   history: RouteComponentProps["history"]
@@ -18,28 +22,29 @@ function SignUp(props: Props) {
 
   const { history } = props
 
-  const handleSignup = useCallback(
-    async (e) => {
-      e.preventDefault()
-      const { email, password, confirmPassword } = e.target.elements
-      console.log(confirmPassword)
+  const FormErrorMessages: formErrorTypes = {
+    ['auth/invalid-email']: 'Email is invalid',
+    ['auth/weak-password']: 'Password must be at least 6 characters long',
+    ['auth/email-already-in-use']: 'Email already exists',
+  };
 
-      try {
-        if (password.value === confirmPassword.value) {
-          await FirebaseApp.auth().createUserWithEmailAndPassword(
-            email.value,
-            password.value
-          )
-          history.push("/")
-        } else {
-          setSignupFormElementErr("Your passwords do not match")
-        }
-      } catch (err) {
-        setSignupFormElementErr(err.message)
+  async function handleSignup(e:any) {
+    e.preventDefault();
+    const { email, password, confirmPassword, username } = e.target.elements;
+    try {
+      if (password.value === confirmPassword.value) {
+        const { user } = await firebaseApp
+          .auth()
+          .createUserWithEmailAndPassword(email.value, password.value);
+        await createUserDocument(user, { username: username.value});
+        history.push('/');
+      } else {
+        setSignupFormElementErr('Passwords do not match');
       }
-    },
-    [history]
-  )
+    } catch (err) {
+      setSignupFormElementErr(FormErrorMessages[err.code] || err.message);
+    }
+  }
 
   const { currentUser } = useContext(AuthContext)
   if (currentUser) {

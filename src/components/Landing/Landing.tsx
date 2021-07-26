@@ -10,11 +10,6 @@ import { AuthContext } from '../../Auth';
 function Landing() {
   const [preview, setPreview] = useState<string>();
 
-  const { currentUser } = useContext(AuthContext);
-  if (currentUser) {
-    <Redirect to='/home' />;
-  }
-
   useEffect(() => {
     if (window.matchMedia('(min-width: 768px)').matches) {
       setPreview(PreviewDesktop);
