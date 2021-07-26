@@ -1,0 +1,85 @@
+@use '../../style/variables.scss' as *;
+@use '../../style/mediaQueriesMixin.scss' as *;
+
+.account {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_logo {
+    width: 90%;
+
+    @include mediaQuery(laptop) {
+      width: 30%;
+    }
+  }
+
+  &_creation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 4em 0 6em;
+    padding: 1em;
+
+    @include mediaQuery(laptop) {
+      padding: 0;
+      flex-direction: row;
+    }
+
+    > span {
+      margin: 0 1em;
+      align-self: center;
+      font-family: "Baskerville", serif;
+      font-style: italic;
+      font-size: 3em;
+      font-weight: 400;
+    }
+
+    &_signup,
+    &_login {
+      padding: 1em 2em;
+      min-width: 25%;
+      background-color: white;
+      border-radius: $border-radius;
+
+      > h1 {
+        text-align: center;
+        font-family: "Baskerville", serif;
+        font-style: italic;
+        font-size: 5em;
+        font-weight: 400;
+        line-height: 1em;
+      }
+
+      > form {
+        padding-top: 5em;
+        display: flex;
+        flex-direction: column;
+        font-size: $body;
+
+        > input {
+          padding: 0.5em 1em;
+          margin-bottom: 2.5em;
+          border: none;
+          border-top: 5px solid transparent;
+          border-bottom: 5px solid $light-blue;
+          transition: all 0.3s ease;
+
+          &:focus {
+            outline: none;
+            border: 5px solid $light-blue;
+          }
+        }
+
+        > button {
+          margin-top: 2em;
+        }
+      }
+    }
+  }
+}
