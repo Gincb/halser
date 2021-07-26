@@ -1,13 +1,18 @@
-$body-bg-color: #f9f6f6;
-$login-header-color: #000;
-$secondary-buttons: #F3F4F6;
+$body-bg-color: #F0F0F0;
+$border-radius: 11pt;
+$button-radius: 27pt;
 
-$sidebar-width: 300px;
-$sidebar-width-vw: 20vw;
+// color palette
+$dark-green: #8DC9B4;
+$light-green: #D0E3CD;
+$light-blue: #D7ECEC;
+$light-red: #FACECB;
+$light-orange: #FBE1C5;
 
-$border-radius-s: 15px;
-$border-radius-m: 25px;
-
-$accent-color: #F4D4D9;
-$accent-color-lighter: #f7c7cf;
-
+// text
+$h1: 2em;
+$subheading: 1.5em;
+$body: 1em;
+$additional: 1.25em;
+$text-color: #333;
+$line-height: 1.7em;

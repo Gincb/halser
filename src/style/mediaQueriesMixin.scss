@@ -1,15 +1,3 @@
-/*  
-use it like this: 
-first import it as *  @use {path} as *; 
-then use it directly inside the element: 
-body{
-	background:blue; 
-	  @include mediaQuery(tablet) {
-    background: red;
-  }
-}
-*/
-
 @mixin mediaQuery($size) {
   @if $size == phone_medium {
     @media only screen and (min-width: 375px) {

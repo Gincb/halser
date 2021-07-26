@@ -2,13 +2,19 @@
 @use './style/variables.scss' as *;
 @use './style/mediaQueriesMixin.scss' as *;
 
-.landing {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #F0F0F0;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: $text-color;
+  line-height: $line-height;
+}
 
-  &_full-logo {
-    width: 30%;
-  }
+.App,
+body,
+html {
+  background: $body-bg-color;
+  scroll-behavior: smooth;
 }

@@ -1,0 +1,62 @@
+@use '../../style/variables.scss' as *;
+@use '../../style/mediaQueriesMixin.scss' as *;
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F0F0F0;
+
+  &_logo {
+    width: 90%;
+
+    @include mediaQuery(laptop) {
+      width: 30%;
+    }
+  }
+
+  &_info {
+    margin: 4em 0 6em;
+    padding: 1em;
+    background-color: white;
+    border-radius: $border-radius;
+    text-align: center;
+    width: 90%;
+
+    @include mediaQuery(laptop) {
+      padding: 2em;
+      width: 65%;
+    }
+    
+    &_text {
+      padding: 0 1em;
+      margin-bottom: 1.5em;
+
+      @include mediaQuery(laptop) {
+        padding: 0 33%;
+      }
+    }
+  }
+
+  &_preview {
+    width: 90%;
+    margin-bottom: 2em;
+
+    @include mediaQuery(phone_large) {
+      width: 80%;
+    }
+
+    @include mediaQuery(laptop) {
+      width: 70%;
+    }
+
+    > img {
+      width: 100%;
+      object-fit: contain ;
+    }
+  }
+
+  footer > p {
+    font-size: 0.8em;
+  }
+}

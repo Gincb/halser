@@ -15,12 +15,12 @@ function PrivateRoute(props: ProtectedRouteProps) {
       {...rest}
     >
       {routeProps =>
-        currentUser ? (
+        !!currentUser ? (
           <>
             <RouteComponent {...routeProps} />
           </>
         ) : (
-          <Redirect to={'/'} />
+          <Redirect to={'/halser'} />
         )
       }
     </Route>
