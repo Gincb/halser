@@ -35,9 +35,7 @@ function Login(props: Props) {
           email.value,
           password.value
         )
-        setTimeout(() => {
           history.push("/")
-        }, 400)
       } catch (err) {
         setLoginFormElementErr(LoginFormErrorMessages[err.code] || err.message)
       }
@@ -46,7 +44,6 @@ function Login(props: Props) {
   )
 
   const { currentUser } = useContext(AuthContext)
-  console.log(currentUser)
   if (currentUser) {
     <Redirect to="/" />
   }

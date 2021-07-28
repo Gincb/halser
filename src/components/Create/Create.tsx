@@ -1,16 +1,17 @@
 import app from '../FirebaseApp';
 
-function Home() {
+function Create() {
   function handleSignOut() {
+    //sign out from the app
     app.auth().signOut();
   }
 
   return (
-    <div className='home'>
-      <h1>Wassup</h1>
+    <div className='create'>
+      <h1>Create</h1>
       <button onClick={handleSignOut}> Log out </button>
     </div>
   );
 }
 
-export default Home;
+export default Create;
