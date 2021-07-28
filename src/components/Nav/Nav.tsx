@@ -4,6 +4,7 @@ import Home from "../../assets/Home"
 import Create from "../../assets/Create"
 import Profile from "../../assets/Profile"
 import Logout from "../../assets/Signout"
+import NavItem from "../NavItem/NavItem"
 
 function Nav() {
   const [navPosition, setNavPosition] = useState<string>("top")
@@ -25,36 +26,15 @@ function Nav() {
 
   return (
     <nav className="nav">
-      {navPosition === "top" ? (
-        <>
-          <ul className="nav_list">
-            <li>Somethin</li>
-            <li>Somethin</li>
-          </ul>
-          <Logo className="nav_logo" />
-          <ul className="nav_list">
-            <li>Somethin</li>
-            <li>Somethin</li>
-          </ul>
-        </>
-      ) : (
-        <>
-          <ul className="nav_list">
-            <li>
-              <Home />
-            </li>
-            <li>
-              <Create />
-            </li>
-            <li>
-              <Profile />
-            </li>
-            <li>
-              <Logout />
-            </li>
-          </ul>
-        </>
-      )}
+      <ul className="nav_list">
+        <NavItem position={navPosition} text="home" icon={<Home />} />
+        <NavItem position={navPosition} text="create" icon={<Create />} />
+      </ul>
+      <Logo className={"nav_logo_" + navPosition} />
+      <ul className="nav_list">
+        <NavItem position={navPosition} text="profile" icon={<Profile />} />
+        <NavItem position={navPosition} text="logout" icon={<Logout />} />
+      </ul>
     </nav>
   )
 }
