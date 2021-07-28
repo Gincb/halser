@@ -3,22 +3,35 @@
 
 .authors_card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
-  width: 435px;
+  justify-content: center;
+  min-width: 225px;
+  width: 225px;
   height: 100%;
   margin-right: 2em;
   background-color: white;
   border-radius: $border-radius;
 
+  @include mediaQuery(tablet) {
+    flex-direction: row;
+    min-width: 398px;
+    width: 435px;
+  }
+
   &_person {
-    height: 100%;
-    width: 35%;
-    padding: 1.5em 1em;
+    height: 35%;
+    width: 100%;
     text-align: center;
 
-    >img {
+    @include mediaQuery(tablet) {
+      width: 35%;
+      height: 100%;
+      padding: 1.5em 1em;
+    }
+
+    > img {
       width: 100px;
       height: 100px;
       object-fit: cover;
@@ -32,8 +45,13 @@
   }
 
   &_line {
-    width: 15px;
-    height: 80%;
+    width: 80%;
+    height: 7px;
     background-color: $light-orange;
+
+    @include mediaQuery(tablet) {
+      width: 15px;
+      height: 80%;
+    }
   }
 }
