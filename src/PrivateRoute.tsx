@@ -1,31 +1,30 @@
-import React, { useContext } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { RouteProps } from 'react-router';
-import { AuthContext } from './Auth';
+import React, { useContext } from "react"
+import { Route, Redirect } from "react-router-dom"
+import { RouteProps } from "react-router"
+import { AuthContext } from "./Auth"
+import Nav from "./components/Nav/Nav"
 
 type ProtectedRouteProps = {
-  component: React.FunctionComponent<any>;
-} & RouteProps;
+  component: React.FunctionComponent<any>
+} & RouteProps
 
 function PrivateRoute(props: ProtectedRouteProps) {
-  const { component: RouteComponent, ...rest } = props;
-  const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+  const { component: RouteComponent, ...rest } = props
+  const { currentUser } = useContext(AuthContext)
   return (
-    <Route
-      {...rest}
-    >
-      {routeProps =>
+    <Route {...rest}>
+      {(routeProps) =>
         !!currentUser ? (
           <>
+            <Nav />
             <RouteComponent {...routeProps} />
           </>
         ) : (
-          <Redirect to={'/halser'} />
+          <Redirect to={"/halser"} />
         )
       }
     </Route>
-  );
+  )
 }
 
-export default PrivateRoute;
+export default PrivateRoute

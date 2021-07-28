@@ -14,23 +14,30 @@
   background-color: white;
   @include mediaQuery(tablet) {
     height: 70px;
-   }
+  }
 
   @include mediaQuery(tablet) {
-   position: static;
+    position: static;
   }
 
   &_list {
     height: 100%;
     width: 100%;
+
+    &_active {
+      >li > svg *{
+        fill: $dark-green;
+        stroke: $dark-green;
+      }
+    }
   }
 
   &_logo_top {
-    width: 30vw; 
-    transform: rotate(30deg);   
+    width: 30vw;
+    transform: rotate(30deg);
   }
 
   &_logo_bottom {
-    display: none;  
+    display: none;
   }
 }
