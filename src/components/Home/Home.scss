@@ -1,2 +1,15 @@
 @use '../../style/variables.scss' as *;
 @use '../../style/mediaQueriesMixin.scss' as *;
+
+.home {
+  padding: 1.9em;
+
+  &_authors {
+    width: 100%;
+
+    >h1 {
+      font-size: $h1;
+      margin-top: 1.8em;
+    }
+  }
+}

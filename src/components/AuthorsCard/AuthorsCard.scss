@@ -1,0 +1,39 @@
+@use '../../style/variables.scss' as *;
+@use '../../style/mediaQueriesMixin.scss' as *;
+
+.authors_card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 435px;
+  height: 100%;
+  margin-right: 2em;
+  background-color: white;
+  border-radius: $border-radius;
+
+  &_person {
+    height: 100%;
+    width: 35%;
+    padding: 1.5em 1em;
+    text-align: center;
+
+    >img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  &_description {
+    padding: 1em;
+    font-size: $body;
+  }
+
+  &_line {
+    width: 15px;
+    height: 80%;
+    background-color: $light-orange;
+  }
+}

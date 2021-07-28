@@ -1,14 +1,12 @@
-import app from '../FirebaseApp';
+import AuthorsList from '../AuthorsList/AuthorsList';
 
 function Home() {
-  function handleSignOut() {
-    app.auth().signOut();
-  }
-
   return (
     <div className='home'>
-      <h1>Wassup</h1>
-      <button onClick={handleSignOut}> Log out </button>
+      <div className='home_authors'>
+        <h1>Trending Authors</h1>
+        <AuthorsList/>
+      </div>
     </div>
   );
 }
