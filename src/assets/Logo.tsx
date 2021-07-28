@@ -1,6 +1,10 @@
-function Logo() {
+export type Props = {
+  className?: string
+}
+
+function Logo(props: Props) {
   return (
-    <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 176">
+    <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 176"  className={props.className}>
       <circle cx="88" cy="88" r="88" fill="#fff" />
       <path
         id="path2311"

@@ -1,11 +1,9 @@
-import { useEffect, useState, useContext } from "react";
-import { Redirect } from "react-router";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import FullLogo from "../../assets/FullLogo";
 import Button from '../Buttons/Button';
 import PreviewDesktop from '../../assets/landing.png'
 import PreviewMobile from '../../assets/landing-m.png'
-import { AuthContext } from '../../Auth';
 
 function Landing() {
   const [preview, setPreview] = useState<string>();
