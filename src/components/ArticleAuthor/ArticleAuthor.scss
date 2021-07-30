@@ -1,0 +1,26 @@
+@use '../../style/variables.scss' as *;
+@use '../../style/mediaQueriesMixin.scss' as *;
+
+.article-author {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  >img{
+    height: 80px;
+    width: 80px;
+    margin-right: 1.5em;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  >h1{
+    padding: 0.3em 0.8em;
+    font-size: $subheading;
+    background-color: $light-green;
+    border-radius: $button-radius;
+    font-weight: 400;
+  }
+}

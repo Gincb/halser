@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Button from "../Buttons/Button"
+import ArticleAuthor from "../ArticleAuthor/ArticleAuthor";
 
 function ArticleCard() {
   const [clampedText, setClampedText] = useState<string>('article_card_contents');
@@ -17,6 +18,9 @@ function ArticleCard() {
 
   return (
     <article className="article_card">
+      <div>
+        <ArticleAuthor/>
+      </div>
       <div className={clampedText}>
         <img
           src="https://images.unsplash.com/photo-1602760735231-cc51a5633668?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1873&q=80"
