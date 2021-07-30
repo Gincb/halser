@@ -6,6 +6,11 @@ function AuthorsList() {
       <AuthorsCard/>
       <AuthorsCard/>
       <AuthorsCard/>
+      <AuthorsCard/>
+      <AuthorsCard/>
+      <AuthorsCard/>
+      <AuthorsCard/>
+      <AuthorsCard/>
     </section>
   );
 }
