@@ -8,17 +8,9 @@
   margin-bottom: 7em;
 
   &_contents {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    height: 100%;
-    width: 100%;
+    min-height: 622px;
     background-color: white;
     border-radius: $border-radius;
-
-    @include mediaQuery(laptop) {
-      flex-direction: row;
-    }
 
     > img {
       width: 100%;
@@ -26,15 +18,6 @@
       object-fit: cover;
       object-position: center;
       border-radius: $border-radius;
-
-      @include mediaQuery(laptop) {
-        height: 615px;
-        width: 40%;
-      }
-
-      @include mediaQuery(laptop_large) {
-        width: 60%;
-      }
     }
 
     &_text {
@@ -42,78 +25,6 @@
       padding: 2em 1em;
 
       @include mediaQuery(laptop) {
-        width: 60%;
-        padding: 3em 2em;
-      }
-
-      @include mediaQuery(laptop_large) {
-        width: 40%;
-        padding: 3em 2em;
-      }
-
-      > h1 {
-        margin-bottom: 1.3em;
-        font-size: $additional;
-        text-align: center;
-
-        @include mediaQuery(laptop) {
-          font-size: $h1;
-        }
-      }
-
-      > p {
-        margin-bottom: 1.3em;
-        font-size: $body;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 10;
-        -webkit-box-orient: vertical;
-        white-space: normal;
-      }
-
-      > span {
-        font-size: 0.8em;
-        font-style: italic;
-      }
-
-      > button {
-        margin-left: 1em;
-        margin-top: 1em;
-
-        @include mediaQuery(tablet) {
-          float: right;
-          margin-top: 0;
-        }
-      }
-    }
-  }
-
-  &_clamped {
-    background-color: white;
-    border-radius: $border-radius;
-    
-
-    > img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: $border-radius;
-
-      @include mediaQuery(laptop) {
-        display: none;
-      }
-    }
-
-    &_text {
-      width: 100%;
-      padding: 2em 1em;
-
-      @include mediaQuery(laptop) {
-        column-count: 3;
-        column-gap: 3em;
-        column-fill: auto;
         padding: 3em 2em;
       }
 
@@ -145,6 +56,65 @@
           float: right;
           margin-top: 0;
         }
+      }
+    }
+  }
+
+  &_clamped {
+    > img {
+      @include mediaQuery(laptop) {
+        display: none;
+      }
+    }
+
+    &_text {
+      @include mediaQuery(laptop) {
+        column-count: 3;
+        column-gap: 3em;
+        column-fill: auto;
+      }
+    }
+  }
+
+  &_unclamped {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+
+    @include mediaQuery(laptop) {
+      flex-direction: row;
+    }
+
+    > img {
+      @include mediaQuery(laptop) {
+        height: 622px;
+        width: 40%;
+      }
+
+      @include mediaQuery(laptop_large) {
+        width: 60%;
+      }
+    }
+
+    &_text {
+
+      @include mediaQuery(laptop) {
+        width: 60%;
+      }
+
+      @include mediaQuery(laptop_large) {
+        width: 40%;
+      }
+
+      > p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 10;
+        -webkit-box-orient: vertical;
+        white-space: normal;
       }
     }
   }

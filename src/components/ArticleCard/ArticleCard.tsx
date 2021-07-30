@@ -3,7 +3,7 @@ import Button from "../Buttons/Button"
 import ArticleAuthor from "../ArticleAuthor/ArticleAuthor";
 
 function ArticleCard() {
-  const [clampedText, setClampedText] = useState<string>('article_card_contents');
+  const [clampedText, setClampedText] = useState<string>('article_card_unclamped');
   const [buttonClose, setButtonClose] = useState<boolean>(false);
 
   function handleRead() {
@@ -12,7 +12,7 @@ function ArticleCard() {
   }
 
   function handleClose() {
-    setClampedText('article_card_contents');
+    setClampedText('article_card_unclamped');
     setButtonClose(false)
   }
 
@@ -21,12 +21,12 @@ function ArticleCard() {
       <div>
         <ArticleAuthor/>
       </div>
-      <div className={clampedText}>
+      <div className={`article_card_contents ${clampedText}`}>
         <img
           src="https://images.unsplash.com/photo-1602760735231-cc51a5633668?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1873&q=80"
-          alt="Article image"
+          alt="Article scenery"
         />
-        <div className={`${clampedText}_text`}>
+        <div className={`article_card_contents_text ${clampedText}_text`}>
           <h1>The spectacle before us was indeed sublime.</h1>
           <p>
             Apparently we had reached a great height in the atmosphere, for the
