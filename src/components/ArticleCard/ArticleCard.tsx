@@ -23,7 +23,7 @@ function ArticleCard() {
       </div>
       <div className={`article_card_contents ${clampedText}`}>
         <img
-          src="https://images.unsplash.com/photo-1602760735231-cc51a5633668?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1873&q=80"
+          src="https://images.unsplash.com/photo-1492714673295-07efb43ddaf8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
           alt="Article scenery"
         />
         <div className={`article_card_contents_text ${clampedText}_text`}>

@@ -3,7 +3,6 @@
 
 .article_card {
   min-height: 622px;
-  height: fit-content;
   width: 100%;
   margin-bottom: 7em;
 
@@ -14,7 +13,7 @@
 
     > img {
       width: 100%;
-      height: 250px;
+      height: 450px;
       object-fit: cover;
       object-position: center;
       border-radius: $border-radius;
@@ -69,7 +68,7 @@
 
     &_text {
       @include mediaQuery(laptop) {
-        column-count: 3;
+        column-count: 2;
         column-gap: 3em;
         column-fill: auto;
       }
@@ -89,7 +88,7 @@
 
     > img {
       @include mediaQuery(laptop) {
-        height: 622px;
+        min-height: 622px;
         width: 40%;
       }
 
