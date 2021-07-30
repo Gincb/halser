@@ -1,2 +1,49 @@
 @use '../../style/variables.scss' as *;
 @use '../../style/mediaQueriesMixin.scss' as *;
+
+.home {
+  padding: 1.9em;
+
+  &_authors {
+    width: 100%;
+
+    &_title {
+      display: inline-block;
+      width: 100%;
+      font-size: $h1;
+
+      @include mediaQuery(tablet) {
+        width: 45%;
+        margin-top: 1em;
+      }
+
+      @include mediaQuery(laptop) {
+        width: 32%;
+      }
+
+      @include mediaQuery(laptop_large) {
+        width: 23%;
+        margin-top: 2em;
+      }
+    }
+
+    &_line {
+      display: inline-block;
+      height: 10px;
+      width: 100%;
+      background-color: $dark-green;
+
+      @include mediaQuery(tablet) {
+        width: 55%;
+      }
+
+      @include mediaQuery(laptop) {
+        width: 68%;
+      }
+
+      @include mediaQuery(laptop_large) {
+        width: 77%;
+      }
+    }
+  }
+}
