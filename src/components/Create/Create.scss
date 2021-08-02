@@ -1,0 +1,10 @@
+@use '../../style/variables.scss' as *;
+@use '../../style/mediaQueriesMixin.scss' as *;
+
+.create {
+  padding: 1.9em;
+
+  @include mediaQuery(tablet) {
+    padding: 5.8em 5em;
+  }
+}
