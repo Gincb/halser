@@ -74,8 +74,14 @@
     &_text {
       @include mediaQuery(laptop) {
         column-count: 2;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
         column-gap: 3em;
+        -webkit-column-gap: 3em; /* Chrome/Opera, Safari */
+        -moz-column-gap: 3em;
         column-fill: auto;
+        -webkit-column-fill: auto;
+        -moz-column-fill: auto;
       }
     }
   }

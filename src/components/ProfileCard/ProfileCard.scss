@@ -1,0 +1,114 @@
+@use '../../style/variables.scss' as *;
+@use '../../style/mediaQueriesMixin.scss' as *;
+
+.profile-card {
+  background-color: white;
+  border-radius: $button-radius;
+
+  &_author {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1em;
+    height: 20em;
+    background-image: url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80');
+    background-position: center;
+    background-size: cover;
+    border-radius: $button-radius;
+
+    >img {
+      height: 11em;
+      width: 11em;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+    }
+
+    >h1{
+      padding: 0.3em 0.8em;
+      font-size: $subheading;
+      background-color: $light-green;
+      border-radius: $button-radius;
+      font-weight: 400;
+    }
+  }
+
+  &_description {
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 21em;
+
+    @include mediaQuery(laptop) {
+      flex-direction: row;
+      height: 21em;
+    }
+
+    >p {
+      font-size: $additional;
+
+      @include mediaQuery(laptop) {
+        font-size: $subheading;
+      }
+
+      @include mediaQuery(laptop) {
+        width: 45%;
+      }
+    }
+
+    >ul {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      list-style: none;
+      width: 100%;
+
+      @include mediaQuery(tablet) {
+        height: 10em;
+      }
+
+      @include mediaQuery(laptop) {
+        height: 20em;
+        width: 45%;
+      }
+
+      @include mediaQuery(laptop_large) {
+        height: 15em;
+      }
+
+      >li {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        font-size: $body;
+
+        @include mediaQuery(laptop) {
+          font-size: $additional;
+          font-style: italic;
+        }
+
+        >svg {
+          height: 3.2em;
+        }
+      }
+    }
+
+    &_line {
+      width: 80%;
+      height: 7px;
+      background-color: $light-orange;
+      margin: 1.5em 0;
+
+      @include mediaQuery(laptop) {
+        height: 80%;
+        width: 7px;
+      }
+    }
+  }
+}
