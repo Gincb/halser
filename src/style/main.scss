@@ -2,6 +2,7 @@
 @use '../style/mediaQueriesMixin.scss';
 @use '../style/variables.scss';
 @use '../style/typography.scss';
+@use '../assets/Icons.scss';
 @use '../components/Landing/Landing.scss';
 @use '../components/Buttons/Button.scss';
 @use '../components/UserRegister/UserRegister.scss';
@@ -13,3 +14,5 @@
 @use '../components/ArticlesList/ArticlesList.scss';
 @use '../components/ArticleCard/ArticleCard.scss';
 @use '../components/ArticleAuthor/ArticleAuthor.scss';
+@use '../components/Profile/Profile.scss';
+@use '../components/ProfileCard/ProfileCard.scss';

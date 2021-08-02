@@ -22,7 +22,7 @@
       }
 
       @include mediaQuery(laptop_large) {
-        width: 23%;
+        width: 24%;
         margin-top: 2em;
       }
     }
@@ -42,7 +42,7 @@
       }
 
       @include mediaQuery(laptop_large) {
-        width: 77%;
+        width: 76%;
       }
     }
   }
