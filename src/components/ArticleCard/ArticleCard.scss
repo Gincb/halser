@@ -22,6 +22,11 @@
     &_text {
       width: 100%;
       padding: 2em 1em;
+      text-align: center;
+
+      @include mediaQuery(tablet) {
+        text-align: left;
+      }
 
       @include mediaQuery(laptop) {
         padding: 3em 2em;
