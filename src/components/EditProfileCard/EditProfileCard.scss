@@ -67,4 +67,42 @@
       }
     }
   }
+
+  &_description {
+    >textarea {
+      font-size: $additional;
+      min-height: 7em;
+      height: 80%;
+      width: 100%;
+      padding: 0.5em;
+      border: 2px solid $dark-green;
+      border-radius: $border-radius;
+
+      @include mediaQuery(laptop) {
+        font-size: $subheading;
+      }
+
+      @include mediaQuery(laptop) {
+        width: 45%;
+      }
+    }
+
+    >textarea:focus {
+      outline: none;
+    }
+
+    &_socials {
+      >li {
+        >input {
+          padding: 0.5em;
+          border: 2px solid $dark-green;
+          border-radius: $border-radius;
+        }
+
+        >input:focus {
+          outline: none;
+        }
+      }
+    }
+  }
 }
