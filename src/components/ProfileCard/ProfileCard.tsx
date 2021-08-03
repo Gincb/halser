@@ -6,7 +6,8 @@ import Webpage from "../../assets/Webpage"
 import EditProfile from "../../assets/EditProfile"
 
 export type Props = {
-  setEditMode: React.Dispatch<React.SetStateAction<boolean>>
+  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  profileInfo: any;
 }
 
 
@@ -14,8 +15,9 @@ function ProfileCard(props: Props) {
 
 function handleEditOnclick() {
   props.setEditMode(true);
-  console.log('true')
 }
+
+console.log(props.profileInfo)
 
   return (
     <section className="profile-card">

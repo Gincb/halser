@@ -2,6 +2,8 @@
 @use '../../style/mediaQueriesMixin.scss' as *;
 
 .profile-card {
+  text-align: center;
+
   &_author {
     &_edit-image {
       position: relative;
@@ -69,7 +71,7 @@
   }
 
   &_description {
-    >textarea {
+    > textarea {
       font-size: $additional;
       min-height: 7em;
       height: 80%;
@@ -87,22 +89,57 @@
       }
     }
 
-    >textarea:focus {
+    > textarea:focus {
       outline: none;
     }
 
     &_socials {
-      >li {
-        >input {
+      > li {
+        > input {
           padding: 0.5em;
           border: 2px solid $dark-green;
           border-radius: $border-radius;
         }
 
-        >input:focus {
+        > input:focus {
           outline: none;
         }
       }
     }
+  }
+
+  &_submit {
+    cursor: pointer;
+    padding: 0.5em 5em;
+    margin: 1em 0;
+    background-color: $light-blue;
+    border-radius: $button-radius;
+    border: none;
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+      background-color: $light-orange;
+      color: white;
+    }
+  }
+
+  &_saving {
+    cursor: pointer;
+    margin: 1em 0;
+    padding: 0.5em 5em;
+    background-color: $light-orange;
+    border-radius: $button-radius;
+    border: none;
+    transition: all 300ms ease-in-out;
+  }
+
+  &_saved {
+    cursor: pointer;
+    margin: 1em 0;
+    padding: 0.5em 5em;
+    background-color: $light-green;
+    border-radius: $button-radius;
+    border: none;
+    transition: all 300ms ease-in-out;
   }
 }
