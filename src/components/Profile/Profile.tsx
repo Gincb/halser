@@ -8,7 +8,7 @@ function Profile() {
   return (
     <div className="profile">
       {editMode ? (
-        <EditProfileCard />
+        <EditProfileCard setEditMode={setEditMode} />
       ) : (
         <ProfileCard setEditMode={setEditMode} />
       )}
