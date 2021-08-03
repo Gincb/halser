@@ -64,7 +64,7 @@ export async function uploadUserImage(user: any, profileImage: string) {
             username: info?.username,
             email: info?.email,
             createdAt: info?.createdAt,
-            socials: {twitter: info?.twitter ? info.twitter : 'twitter.com/', instagram: info?.instagram ? info.instagram : 'instagram.com/', linkedin: info?.linkedin ? info.linkedin : 'linkedin.com/', website: info?.website ? info.website : '/'},
+            socials: {twitter: info?.socials.twitter ? info.socials.twitter : 'twitter.com/', instagram: info?.socials.instagram ? info.socials.instagram : 'instagram.com/', linkedin: info?.socials.linkedin ? info.socials.linkedin : 'linkedin.com/', website: info?.socials.website ? info.socials.website : '/'},
             description: info?.description ? info.description : '',
             profileImage,
           });
