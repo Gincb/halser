@@ -14,7 +14,7 @@ function Profile() {
   useEffect(() => {
     getUserDoc(app.auth().currentUser).then(data => {
       setProfileInformation(data);
-      setLoading(false)
+      setLoading(false);
     });
   }, []);
 
@@ -24,7 +24,7 @@ function Profile() {
       (editMode ? (
         <EditProfileCard setEditMode={setEditMode} profileInfo={profileInformation}/>
       ) : (
-        <ProfileCard setEditMode={setEditMode}  profileInfo={profileInformation}/>
+        <ProfileCard setEditMode={setEditMode}  profileInfo={profileInformation} setProfileInformation={setProfileInformation}/>
       ))}
     </div>
   )

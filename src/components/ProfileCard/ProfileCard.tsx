@@ -1,3 +1,7 @@
+import { useEffect, useContext } from "react"
+import { AuthContext } from "../../Auth"
+import { getUserDoc } from "../FirebaseApp"
+import app from "../FirebaseApp"
 import Email from "../../assets/Email"
 import Instagram from "../../assets/Instagram"
 import Linkedin from "../../assets/Linkedin"
@@ -7,10 +11,19 @@ import EditProfile from "../../assets/EditProfile"
 
 export type Props = {
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>
-  profileInfo: any
+  profileInfo: {username: string, email: string, description?: string, socials?: {twitter?: string, instagram?: string, linkedin?: string, website?: string}, profileImage: string, createdAt: {seconds: number, nanoseconds: number}};
+  setProfileInformation: (arg) => void
 }
 
 function ProfileCard(props: Props) {
+  const { currentUser } = useContext(AuthContext)
+
+  useEffect(() => {
+    getUserDoc(app.auth().currentUser).then((data) => {
+      props.setProfileInformation(data)
+    })
+  }, [])
+
   function handleEditOnclick() {
     props.setEditMode(true)
   }
@@ -37,7 +50,8 @@ function ProfileCard(props: Props) {
             <Email />
             <span>{props.profileInfo?.email}</span>
           </li>
-          {props.profileInfo?.socials?.instagram && props.profileInfo?.socials?.instagram !== 'instagram.com/' ? (
+          {props.profileInfo?.socials?.instagram &&
+          props.profileInfo?.socials?.instagram !== "instagram.com/" ? (
             <li>
               <Instagram />
               <span>{props.profileInfo.socials.instagram}</span>
@@ -45,7 +59,8 @@ function ProfileCard(props: Props) {
           ) : (
             ""
           )}
-          {props.profileInfo?.socials?.twitter && props.profileInfo?.socials?.twitter !== 'twitter.com/' ? (
+          {props.profileInfo?.socials?.twitter &&
+          props.profileInfo?.socials?.twitter !== "twitter.com/" ? (
             <li>
               <Twitter />
               <span>{props.profileInfo.socials.twitter}</span>
@@ -53,7 +68,8 @@ function ProfileCard(props: Props) {
           ) : (
             ""
           )}
-          {props.profileInfo?.socials?.linkedin && props.profileInfo?.socials?.linkedin !== 'linkedin.com/' ?  (
+          {props.profileInfo?.socials?.linkedin &&
+          props.profileInfo?.socials?.linkedin !== "linkedin.com/" ? (
             <li>
               <Linkedin />
               <span>{props.profileInfo.socials.linkedin}</span>
@@ -61,7 +77,8 @@ function ProfileCard(props: Props) {
           ) : (
             ""
           )}
-          {props.profileInfo?.socials?.website && props.profileInfo?.socials?.website !== '/' ? (
+          {props.profileInfo?.socials?.website &&
+          props.profileInfo?.socials?.website !== "/" ? (
             <li>
               <Webpage />
               <span>{props.profileInfo.socials.website}</span>
