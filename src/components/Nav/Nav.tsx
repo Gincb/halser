@@ -10,7 +10,6 @@ import NavItem from "../NavItem/NavItem"
 
 function Nav() {
   const [navPosition, setNavPosition] = useState<string>("top")
-  const [activeNav, setActiveNav] = useState<string | any>("")
 
   useEffect(() => {
     if (window.matchMedia("(min-width: 768px)").matches) {
@@ -34,22 +33,17 @@ function Nav() {
     if (!localStorage.getItem("nav")) {
       localStorage.setItem("nav", 'home')
     }
-    const navSelected = localStorage.getItem("nav")
-    setActiveNav(navSelected)
   }, [])
 
   function handleClick(selected: string): void | Error {
     switch (selected) {
       case "home":
-        setActiveNav("home")
         localStorage.setItem("nav", "home")
         break
       case "create":
-        setActiveNav("create")
         localStorage.setItem("nav", "create")
         break
       case "profile":
-        setActiveNav("profile")
         localStorage.setItem("nav", "profile")
         break
       default:
@@ -67,27 +61,27 @@ function Nav() {
       <ul className="nav_list">
         <Link
           to="/"
-          className={activeNav === "home" ? "nav_list_active" : ""}
+          className={localStorage.getItem("nav") === 'home' ? "nav_list_active" : ""}
           onClick={() => handleClick("home")}
         >
-          <NavItem position={navPosition} text="home" icon={<Home />} active={activeNav === "home"}/>
+          <NavItem position={navPosition} text="home" icon={<Home />} active={localStorage.getItem("nav") === 'home' }/>
         </Link>
         <Link
           to="/create"
-          className={activeNav === "create" ? "nav_list_active" : ""}
+          className={localStorage.getItem("nav") === 'create'  ? "nav_list_active" : ""}
           onClick={() => handleClick("create")}
         >
-          <NavItem position={navPosition} text="create" icon={<Create />}  active={activeNav === "create"}/>
+          <NavItem position={navPosition} text="create" icon={<Create />}  active={localStorage.getItem("nav") === 'create' }/>
         </Link>
       </ul>
       <Logo className={"nav_logo_" + navPosition} />
       <ul className="nav_list">
         <Link
           to="/profile"
-          className={activeNav === "profile" ? "nav_list_active" : ""}
+          className={localStorage.getItem("nav") === 'profile'  ? "nav_list_active" : ""}
           onClick={() => handleClick("profile")}
         >
-          <NavItem position={navPosition} text="profile" icon={<Profile />}  active={activeNav === "profile"}/>
+          <NavItem position={navPosition} text="profile" icon={<Profile />}  active={localStorage.getItem("nav") === 'profile' }/>
         </Link>
         <NavItem
           position={navPosition}

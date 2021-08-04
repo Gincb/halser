@@ -17,8 +17,8 @@ function ImageUpload(props: Props) {
         height="24.15"
         fill="none"
         stroke="#D0E3CD"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M31.09,27.52H1.9V11l7.41,6.13a2.76,2.76,0,0,0,.92.41,2.65,2.65,0,0,0,1.24,0C18.15,15,23,13.23,23.34,13.13a1.3,1.3,0,0,1,.42-.06,1.51,1.51,0,0,1,.39.08c.29.11,3.06,1,6.94,2.29Z"
