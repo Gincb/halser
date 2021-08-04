@@ -11,7 +11,7 @@ import View from "../../assets/View"
 
 export type Props = {
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>
-  profileInfo: any
+  profileInfo: {username: string, email: string, description?: string, socials?: {twitter?: string, instagram?: string, linkedin?: string, website?: string}, profileImage: string, createdAt: {seconds: number, nanoseconds: number}};
 }
 
 function ProfileCard(props: Props) {
@@ -35,8 +35,8 @@ function ProfileCard(props: Props) {
     setSaving(true)
 
     if (file === undefined) {
-      if (props.profileInfo.profileImg) {
-        uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg)
+      if (props.profileInfo.profileImage) {
+        uploadUserImage(app.auth().currentUser, props.profileInfo.profileImage)
       }
     } else {
       const uploadTask = app.storage().ref(`/avatars/${file.name}`).put(file)
@@ -116,7 +116,7 @@ function ProfileCard(props: Props) {
   }
 
   return (
-    <form className="profile-card" onSubmit={handleAllDataUpload}>
+    <form className="profile-card profile-card-edit" onSubmit={handleAllDataUpload}>
       <div className="profile-card_author">
         <div className="profile-card_author_edit-image">
           <img
@@ -145,6 +145,7 @@ function ProfileCard(props: Props) {
       <div className="profile-card_description">
         <textarea
           name="description"
+          maxLength={150}
           defaultValue={
             props.profileInfo?.description ? props.profileInfo?.description : ""
           }

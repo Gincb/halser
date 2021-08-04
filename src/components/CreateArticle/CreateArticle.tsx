@@ -63,7 +63,7 @@ function CreateArticle() {
         <div className="create-article_image_button">
           Add an image
         </div>
-        <input type="file" name='media' onChange={handleChange}/>
+        <input type="file" required name='media' onChange={handleChange}/>
       </div>
       <input
         className="create-article_title"

@@ -1,67 +1,63 @@
-import { useState } from "react"
-import Button from "../Buttons/Button"
+import { useState, useEffect } from "react";
+import * as firebase from 'firebase'
+import Button from "../Buttons/Button";
 import ArticleAuthor from "../ArticleAuthor/ArticleAuthor";
 
-function ArticleCard() {
+export type Article = {
+  uid: string,
+  content: string,
+  title: string,
+  image: string,
+  createdAt: { seconds: number; nanoseconds: number }
+}
+
+function ArticleCard(props: Article) {
   const [clampedText, setClampedText] = useState<string>('article_card_unclamped');
   const [buttonClose, setButtonClose] = useState<boolean>(false);
+  const [articleTime, setArticleTime] = useState<string>('')
+
+  useEffect(() => {
+    const Timestamp = firebase.default.firestore.Timestamp;
+    const getDate = new Timestamp(
+      props.createdAt.seconds,
+      props.createdAt.nanoseconds
+    ).toDate();
+    const [, month, date, year ] = getDate.toString().split(' ');
+    const time = ` ${year} ${month}, ${date}`;
+    setArticleTime(time);
+  })
+  
 
   function handleRead() {
-    setClampedText('article_card_clamped');
-    setButtonClose(true)
+    if(props.content.length <= 1500) {
+      setClampedText('article_card_min-clamped');
+    } else {
+      setClampedText('article_card_clamped');
+    }
+    setButtonClose(true);
   }
 
   function handleClose() {
     setClampedText('article_card_unclamped');
-    setButtonClose(false)
+    setButtonClose(false);
   }
 
   return (
     <article className="article_card">
       <div>
-        <ArticleAuthor/>
+        <ArticleAuthor uid={props.uid}/>
       </div>
       <div className={`article_card_contents ${clampedText}`}>
         <img
-          src="https://images.unsplash.com/photo-1492714673295-07efb43ddaf8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+          src={props.image}
           alt="Article scenery"
         />
         <div className={`article_card_contents_text ${clampedText}_text`}>
-          <h1>The spectacle before us was indeed sublime.</h1>
+          <h1>{props.title}</h1>
           <p>
-            Apparently we had reached a great height in the atmosphere, for the
-            sky was a dead black, and the stars had ceased to twinkle. By the
-            same illusion which lifts the horizon of the sea to the level of the
-            spectator on a hillside, the sable cloud beneath was dished out, and
-            the car seemed to float in the middle of an immense dark sphere,
-            whose upper half was strewn with silver. Looking down into the dark
-            gulf below, I could see a ruddy light streaming through a rift in
-            the clouds. Dished out, and the car seemed to float in the middle of
-            an immense dark sphere, whose upper half was strewn with silver
-            looking down there.<br/> Curabitur porta mollis massa. Donec risus nunc,
-            facilisis porttitor mauris at, tempor molestie nunc. Aliquam rutrum
-            iaculis neque, vel ornare erat ullamcorper quis. Orci varius natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Duis dictum ipsum id pharetra pharetra. Praesent fermentum nisl eget
-            arcu congue viverra. Suspendisse auctor enim ac feugiat dapibus.
-            Integer sit amet eros fermentum, hendrerit felis eu, rutrum orci.
-            Nulla semper tincidunt efficitur.<br/> Ut euismod egestas quam id tempus.
-            Donec mattis nunc vitae imperdiet pulvinar. Nam dapibus, dolor at
-            maximus vestibulum, nisl ligula pharetra odio, ut malesuada nisl
-            ipsum a nisl. Suspendisse molestie tortor sit amet odio lobortis,
-            vestibulum elementum velit condimentum. Cras congue dictum lorem, id
-            scelerisque sem porta at.<br/> Integer convallis orci malesuada mauris
-            suscipit semper. Nunc placerat, diam in laoreet iaculis, urna felis
-            fringilla sem, a imperdiet orci justo id eros. Vivamus ut erat nec
-            tortor mollis porta eu non nisi. Nulla ac elementum ipsum. Phasellus
-            euismod odio libero, eget bibendum leo feugiat nec. Nulla auctor,
-            diam vel porta fermentum, mauris mi porttitor magna, nec dictum quam
-            arcu eget leo. Aliquam sit amet ipsum et justo malesuada interdum
-            vitae ut lorem. Suspendisse tincidunt nunc id orci lobortis maximus.
-            Aliquam a mattis justo, id egestas massa. Mauris vitae urna libero.
-            Pellentesque hendrerit eget odio in dapibus.
+            {props.content}
           </p>
-          <span>2021 November, 22</span>
+          <span>{articleTime}</span>
           {!buttonClose ? 
           <Button buttonText="Read more" onClick={handleRead}/>
           :

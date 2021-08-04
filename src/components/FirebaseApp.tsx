@@ -138,7 +138,7 @@ export async function createArticle(user: any, additionalData: any) {
     const { media, title, content } = additionalData;
 
     postRef.add({
-      uid: user.uid,
+      userUid: user.uid,
       media,
       title,
       content,

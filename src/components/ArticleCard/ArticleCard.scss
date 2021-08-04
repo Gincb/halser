@@ -64,6 +64,14 @@
     }
   }
 
+  &_min-clamped {
+    > img {
+      @include mediaQuery(laptop) {
+        display: none;
+      }
+    }
+  }
+
   &_clamped {
     > img {
       @include mediaQuery(laptop) {
