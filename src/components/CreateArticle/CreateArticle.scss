@@ -1,0 +1,85 @@
+@use '../../style/variables.scss' as *;
+@use '../../style/mediaQueriesMixin.scss' as *;
+
+.create-article {
+  padding: 2em;
+  background-color: white;
+  border-radius: $border-radius;
+
+  @include mediaQuery(laptop) {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: 25% 50% 25%;
+    grid-template-areas: 'image title title' 'content content content' '. . button';
+  }
+  
+  &_image {
+    grid-area: image;
+    position: relative;
+
+    >svg {
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    >input {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      z-index: 3;
+    }
+
+    &_button {
+      position: absolute;
+      width: 100%;
+      height: 3.25em;
+      top: calc(50% - 1.63em);
+      text-align: center;
+      background-color: $dark-green;
+      padding: 1em;
+      border-radius: $button-radius;
+      font-size: $additional;
+      z-index: 2;
+    }
+
+    >input:hover &_button {
+      background-color: $light-blue;
+    }
+  }
+
+  &_title, &_content {
+    width: 100%;
+    border-radius: $border-radius;
+    border: 3px solid $dark-green;
+  }
+
+  &_title:focus, &_content:focus {
+    outline: none
+  }
+
+  &_title {
+    grid-area: title;
+    padding: 1em;
+    text-align: center;
+    font-size: $h1;
+  }
+
+  &_content {
+    padding: 1em;
+    grid-area: content;
+    margin-top: 2em;
+    font-size: $body;
+    min-height: 20em;
+    resize: vertical;
+  }
+
+  >button {
+    grid-area: button;
+    margin-top: 2em;
+  }
+}

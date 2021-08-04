@@ -1,15 +1,11 @@
-import app from '../FirebaseApp';
+import ArticleAuthor from "../ArticleAuthor/ArticleAuthor";
+import CreateArticle from "../CreateArticle/CreateArticle";
 
 function Create() {
-  function handleSignOut() {
-    //sign out from the app
-    app.auth().signOut();
-  }
-
   return (
     <div className='create'>
-      <h1>Create</h1>
-      <button onClick={handleSignOut}> Log out </button>
+      <ArticleAuthor/>
+      <CreateArticle/>
     </div>
   );
 }
