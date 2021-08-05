@@ -1,13 +1,35 @@
-import ArticleCard from "../ArticleCard/ArticleCard";
+import ArticleCard from "../ArticleCard/ArticleCard"
 
-function ArticlesList() {
-  return (
-    <section className='articles'>
-      <ArticleCard/>
-      <ArticleCard/>
-      <ArticleCard/>
-    </section>
-  );
+export type Props = {
+  articles: any
+  loading: any
+  error: any
 }
 
-export default ArticlesList;
+function ArticlesList(props: Props) {
+  return (
+    props.loading ? <h1>Loading</h1> :
+
+    <section className="articles">
+      {props.articles ? (
+        props.articles.map((article: any) => {
+          return (
+            <ArticleCard
+              key={Math.random() + " article"}
+              userUid={article.data().userUid}
+              content={article.data().content}
+              title={article.data().title}
+              image={article.data().media}
+              createdAt={article.data().createdAt}
+            />
+          )
+        })
+      ) : (
+        <h1>loading</h1>
+      )}
+      {props.error && <h3>Error, no content found</h3>}
+    </section>
+  )
+}
+
+export default ArticlesList

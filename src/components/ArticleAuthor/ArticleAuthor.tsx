@@ -1,12 +1,27 @@
-function ArticleAuthor() {
+import { useEffect, useState } from 'react';
+import { firestore } from '../FirebaseApp';
+
+export type Props = {
+  userUid: string
+}
+
+function ArticleAuthor(props: Props) {
+  const [author, setAuthor] = useState<any>();
+  useEffect(() => {
+    firestore.collection('users').doc(props.userUid).get()
+    .then(data => {
+      setAuthor(data.data());
+    });
+  }, [props.userUid]);
+
   return (
     <div className='article-author'>
       <img
         className="authors_card_img"
-        src="https://images.unsplash.com/photo-1514813482567-2858e6c00ee1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-        alt="Name of the author"
+        src={author?.profileImage}
+        alt={author?.username}
       />
-      <h1>@name</h1>
+      <h1>{`@`+author?.username}</h1>
     </div>
   )
 }

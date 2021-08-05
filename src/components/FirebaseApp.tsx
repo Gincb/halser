@@ -17,6 +17,18 @@ const firebaseApp = firebase.default.initializeApp({
 export const auth = firebase.default.auth();
 export const firestore = firebase.default.firestore();
 
+export async function getCollection(name: string, order?: boolean) {
+  const collection = firestore.collection(name);
+
+  if (order) {
+    const snapshot = await collection.orderBy('createdAt', 'desc').get();
+    if (snapshot) return snapshot;
+  } else {
+    const snapshot = await collection.get();
+    if (snapshot) return snapshot;
+  }
+}
+
 export async function createUserDocument(user: any
   , additionalData: any) {
   if (user) {
@@ -117,6 +129,24 @@ export async function updateUser(user: any, additionalData: any) {
       });
     }
   } else return;
+}
+
+export async function createArticle(user: any, additionalData: any) {
+  const postRef = firestore.collection('articles');
+
+  try {
+    const { media, title, content } = additionalData;
+
+    postRef.add({
+      userUid: user.uid,
+      media,
+      title,
+      content,
+      createdAt: new Date(),
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 export default firebaseApp

@@ -1,7 +1,6 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import app from "../FirebaseApp"
 import { uploadUserImage, updateUser } from "../FirebaseApp"
-import { AuthContext } from "../../Auth"
 import Email from "../../assets/Email"
 import Instagram from "../../assets/Instagram"
 import Linkedin from "../../assets/Linkedin"
@@ -11,11 +10,10 @@ import View from "../../assets/View"
 
 export type Props = {
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>
-  profileInfo: any
+  profileInfo: {username: string, email: string, description?: string, socials?: {twitter?: string, instagram?: string, linkedin?: string, website?: string}, profileImage: string, createdAt: {seconds: number, nanoseconds: number}};
 }
 
 function ProfileCard(props: Props) {
-  const { currentUser } = useContext(AuthContext)
   const [file, setFile] = useState<any>(undefined)
   const [preview, setPreview] = useState<any>()
   const [saving, setSaving] = useState<boolean | undefined>(undefined)
@@ -35,8 +33,8 @@ function ProfileCard(props: Props) {
     setSaving(true)
 
     if (file === undefined) {
-      if (props.profileInfo.profileImg) {
-        uploadUserImage(app.auth().currentUser, props.profileInfo.profileImg)
+      if (props.profileInfo.profileImage) {
+        uploadUserImage(app.auth().currentUser, props.profileInfo.profileImage)
       }
     } else {
       const uploadTask = app.storage().ref(`/avatars/${file.name}`).put(file)
@@ -66,28 +64,28 @@ function ProfileCard(props: Props) {
         socials: {
           twitter: e.target.elements.twitter.value
             ? e.target.elements.twitter.value
-            : e.target.elements.twitter.value.length == 0
+            : e.target.elements.twitter.value.length === 0
             ? "twitter.com/"
             : props.profileInfo.socials
             ? props.profileInfo.socials.twitter
             : "",
           instagram: e.target.elements.instagram.value
             ? e.target.elements.instagram.value
-            : e.target.elements.twitter.value.length == 0
+            : e.target.elements.twitter.value.length === 0
             ? "instagram.com/"
             : props.profileInfo.socials
             ? props.profileInfo.socials.instagram
             : "",
           linkedin: e.target.elements.linkedin.value
             ? e.target.elements.linkedin.value
-            : e.target.elements.twitter.value.length == 0
+            : e.target.elements.twitter.value.length === 0
             ? "linkedin.com/"
             : props.profileInfo.socials
             ? props.profileInfo.socials.linkedin
             : "",
           website: e.target.elements.webpage.value
             ? e.target.elements.webpage.value
-            : e.target.elements.twitter.value.length == 0
+            : e.target.elements.twitter.value.length === 0
             ? "/"
             : props.profileInfo.socials
             ? props.profileInfo.socials.website
@@ -116,7 +114,7 @@ function ProfileCard(props: Props) {
   }
 
   return (
-    <form className="profile-card" onSubmit={handleAllDataUpload}>
+    <form className="profile-card profile-card-edit" onSubmit={handleAllDataUpload}>
       <div className="profile-card_author">
         <div className="profile-card_author_edit-image">
           <img
@@ -145,6 +143,7 @@ function ProfileCard(props: Props) {
       <div className="profile-card_description">
         <textarea
           name="description"
+          maxLength={150}
           defaultValue={
             props.profileInfo?.description ? props.profileInfo?.description : ""
           }
