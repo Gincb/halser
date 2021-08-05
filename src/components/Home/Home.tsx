@@ -8,7 +8,7 @@ import ArticlesList from '../ArticlesList/ArticlesList';
 function Home() {
   const [articles, setArticles] = useState<any>(null);
   const [snapshots, loading, error] = useCollection(
-    firebase.firestore().collection('posts').orderBy('createdAt', 'desc')
+    firebase.firestore().collection('articles').orderBy('createdAt', 'desc')
   );
 
   useEffect(() => {
@@ -17,9 +17,10 @@ function Home() {
     })
     // @ts-ignore
     snapshots && setArticles(snapshots.docs);
-  }, [snapshots]);
+  }, []);
 
   return (
+    loading ? <h1>Loading</h1> :
     <div className='home'>
       <div className='home_authors'>
         <h1 className='home_authors_title'>Trending Authors</h1><div className='home_authors_line'></div>

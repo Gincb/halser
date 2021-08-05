@@ -8,6 +8,8 @@ export type Props = {
 
 function ArticlesList(props: Props) {
   return (
+    props.loading ? <h1>Loading</h1> :
+
     <section className="articles">
       {props.articles ? (
         props.articles.map((article: any) => {
