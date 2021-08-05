@@ -1,12 +1,10 @@
-import { useState, useContext, useEffect } from "react"
-import { AuthContext } from "../../Auth";
+import { useState, useEffect } from "react"
 import app from '../FirebaseApp'
 import {getUserDoc} from '../FirebaseApp'
 import ProfileCard from "../ProfileCard/ProfileCard"
 import EditProfileCard from "../EditProfileCard/EditProfileCard"
 
 function Profile() {
-  const { currentUser } = useContext(AuthContext);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [profileInformation, setProfileInformation] = useState<any>();
   const [loading, setLoading] = useState<boolean>(true)

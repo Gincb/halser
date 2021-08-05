@@ -1,5 +1,4 @@
-import { useEffect, useContext } from "react"
-import { AuthContext } from "../../Auth"
+import { useEffect } from "react"
 import { getUserDoc } from "../FirebaseApp"
 import app from "../FirebaseApp"
 import Email from "../../assets/Email"
@@ -16,13 +15,12 @@ export type Props = {
 }
 
 function ProfileCard(props: Props) {
-  const { currentUser } = useContext(AuthContext)
-
   useEffect(() => {
+    const profileState = props.setProfileInformation;
     getUserDoc(app.auth().currentUser).then((data) => {
-      props.setProfileInformation(data)
+      profileState(data)
     })
-  }, [])
+  }, [props.setProfileInformation])
 
   function handleEditOnclick() {
     props.setEditMode(true)

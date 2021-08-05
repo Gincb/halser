@@ -2,18 +2,17 @@ import { useEffect, useState } from 'react';
 import { firestore } from '../FirebaseApp';
 
 export type Props = {
-  uid: string
+  userUid: string
 }
 
 function ArticleAuthor(props: Props) {
   const [author, setAuthor] = useState<any>();
   useEffect(() => {
-    firestore.collection('users').doc(props.uid).get()
+    firestore.collection('users').doc(props.userUid).get()
     .then(data => {
-      data && setAuthor(data.data());
-      console.log(data.data())
+      setAuthor(data.data());
     });
-  }, [setAuthor]);
+  }, [props.userUid]);
 
   return (
     <div className='article-author'>

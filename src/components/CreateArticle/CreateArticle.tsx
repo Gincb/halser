@@ -1,13 +1,11 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import app from '../FirebaseApp';
 import { createArticle } from '../FirebaseApp';
-import { AuthContext } from '../../Auth';
 import Button from "../Buttons/Button"
 import ImageUpload from "../../assets/ImageUpload"
 
 function CreateArticle() {
-  const { currentUser } = useContext(AuthContext);
   const [file, setFile] = useState<any>(undefined);
   const history = useHistory();
 

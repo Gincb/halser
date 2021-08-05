@@ -11,11 +11,10 @@ function ArticlesList(props: Props) {
     <section className="articles">
       {props.articles ? (
         props.articles.map((article: any) => {
-    
           return (
             <ArticleCard
               key={Math.random() + " article"}
-              uid={article.data().uid}
+              userUid={article.data().userUid}
               content={article.data().content}
               title={article.data().title}
               image={article.data().media}

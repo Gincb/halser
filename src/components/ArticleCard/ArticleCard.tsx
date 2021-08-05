@@ -4,7 +4,7 @@ import Button from "../Buttons/Button";
 import ArticleAuthor from "../ArticleAuthor/ArticleAuthor";
 
 export type Article = {
-  uid: string,
+  userUid: string,
   content: string,
   title: string,
   image: string,
@@ -25,7 +25,7 @@ function ArticleCard(props: Article) {
     const [, month, date, year ] = getDate.toString().split(' ');
     const time = ` ${year} ${month}, ${date}`;
     setArticleTime(time);
-  })
+  }, [props.createdAt.seconds, props.createdAt.nanoseconds])
   
 
   function handleRead() {
@@ -45,7 +45,7 @@ function ArticleCard(props: Article) {
   return (
     <article className="article_card">
       <div>
-        <ArticleAuthor uid={props.uid}/>
+        <ArticleAuthor userUid={props.userUid}/>
       </div>
       <div className={`article_card_contents ${clampedText}`}>
         <img

@@ -6,7 +6,7 @@ function Create() {
   const { currentUser } = app.auth();
   return (
     <div className='create'>
-      <ArticleAuthor uid={currentUser.uid}/>
+      <ArticleAuthor userUid={currentUser.uid}/>
       <CreateArticle/>
     </div>
   );

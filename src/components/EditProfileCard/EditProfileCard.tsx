@@ -1,7 +1,6 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import app from "../FirebaseApp"
 import { uploadUserImage, updateUser } from "../FirebaseApp"
-import { AuthContext } from "../../Auth"
 import Email from "../../assets/Email"
 import Instagram from "../../assets/Instagram"
 import Linkedin from "../../assets/Linkedin"
@@ -15,7 +14,6 @@ export type Props = {
 }
 
 function ProfileCard(props: Props) {
-  const { currentUser } = useContext(AuthContext)
   const [file, setFile] = useState<any>(undefined)
   const [preview, setPreview] = useState<any>()
   const [saving, setSaving] = useState<boolean | undefined>(undefined)
@@ -66,28 +64,28 @@ function ProfileCard(props: Props) {
         socials: {
           twitter: e.target.elements.twitter.value
             ? e.target.elements.twitter.value
-            : e.target.elements.twitter.value.length == 0
+            : e.target.elements.twitter.value.length === 0
             ? "twitter.com/"
             : props.profileInfo.socials
             ? props.profileInfo.socials.twitter
             : "",
           instagram: e.target.elements.instagram.value
             ? e.target.elements.instagram.value
-            : e.target.elements.twitter.value.length == 0
+            : e.target.elements.twitter.value.length === 0
             ? "instagram.com/"
             : props.profileInfo.socials
             ? props.profileInfo.socials.instagram
             : "",
           linkedin: e.target.elements.linkedin.value
             ? e.target.elements.linkedin.value
-            : e.target.elements.twitter.value.length == 0
+            : e.target.elements.twitter.value.length === 0
             ? "linkedin.com/"
             : props.profileInfo.socials
             ? props.profileInfo.socials.linkedin
             : "",
           website: e.target.elements.webpage.value
             ? e.target.elements.webpage.value
-            : e.target.elements.twitter.value.length == 0
+            : e.target.elements.twitter.value.length === 0
             ? "/"
             : props.profileInfo.socials
             ? props.profileInfo.socials.website
