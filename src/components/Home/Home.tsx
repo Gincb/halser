@@ -23,7 +23,7 @@ function Home() {
     loading ? <h1>Loading</h1> :
     <div className='home'>
       <div className='home_authors'>
-        <h1 className='home_authors_title'>Authors</h1><div className='home_authors_line'></div>
+        <h1 className='home_authors_title'>Discover Authors</h1><div className='home_authors_line'></div>
         <AuthorsList/>
       </div>
       <div className='home_articles'>
