@@ -6,6 +6,7 @@ import Instagram from "../../assets/Instagram"
 import Linkedin from "../../assets/Linkedin"
 import Twitter from "../../assets/Twitter"
 import Webpage from "../../assets/Webpage"
+import ProfileArticleList from "../ProfileArticleList/ProfileArticleList";
 
 function OtherProfile(props: any) {
   let history = useHistory();
@@ -77,6 +78,7 @@ function OtherProfile(props: any) {
         </ul>
       </article>
     </section>
+            <ProfileArticleList userId={props.location.state.uid}/>
     </div>
   )
 }

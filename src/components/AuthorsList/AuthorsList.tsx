@@ -16,16 +16,15 @@ function AuthorsList() {
     <section className="authors">
       {authors ? (
         authors.map((author: any) => {
-          console.log(author.id)
           return (
             <Link
+              key={Math.random() + author.data().username}
               to={{
                 pathname: "/profile/" + author.id,
                 state: { uid: author.id },
               }}
             >
               <AuthorsCard
-                key={Math.random() + " author"}
                 username={author.data().username}
                 description={
                   author.data().description ? author.data().description : ""
