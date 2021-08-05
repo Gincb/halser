@@ -16,8 +16,8 @@
 
   @include mediaQuery(tablet) {
     flex-direction: row;
-    min-width: 398px;
-    width: 435px;
+    min-width: 500px;
+    width: 550px;
   }
 
   &_person {

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import * as firebase from 'firebase'
 import Button from "../Buttons/Button";
 import ArticleAuthor from "../ArticleAuthor/ArticleAuthor";
+import { Link } from 'react-router-dom';
 
 export type Article = {
   userUid: string,
@@ -45,7 +46,9 @@ function ArticleCard(props: Article) {
   return (
     <article className="article_card">
       <div>
+      <Link to={{ pathname: '/profile/' + props.userUid, state: { uid: props.userUid } }}>
         <ArticleAuthor userUid={props.userUid}/>
+        </Link>
       </div>
       <div className={`article_card_contents ${clampedText}`}>
         <img
