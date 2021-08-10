@@ -39,8 +39,6 @@ function ProfileCard(props: Props) {
     props.setEditMode(true)
   }
 
-  console.log(props.profileInfo)
-
   return (
     <section className="profile-card">
       <article className="profile-card_author">

@@ -20,7 +20,7 @@ function Profile() {
       setLoading(false)
     })
   }, [])
-  console.log(currentUser.uid)
+  
   return (
     <div className="profile">
       {loading ? (
