@@ -28,7 +28,7 @@ function OtherProfile(props: any) {
           className="profile-card_author_edit"
           onClick={history.goBack}
         >
-          Back
+          ◀ Back
         </button>
       </article>
       <article className="profile-card_description">

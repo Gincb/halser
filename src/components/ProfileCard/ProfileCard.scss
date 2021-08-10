@@ -44,12 +44,18 @@
       height: 3em;
       background-color: $light-orange;
       text-align: center;
+      font-weight: 600;
       border-radius: $button-radius;
       border: none;
+      transition: all 0.3s ease;
 
       > svg {
         height: 100%;
         transform: rotate(30deg);
+      }
+
+      &:hover {
+        background-color: $light-green;
       }
     }
   }
