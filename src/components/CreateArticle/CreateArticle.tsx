@@ -1,55 +1,62 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import app from '../FirebaseApp';
-import { createArticle } from '../FirebaseApp';
+import { useState } from "react"
+import { useHistory } from "react-router-dom"
+import app from "../FirebaseApp"
+import { createArticle } from "../FirebaseApp"
 import Button from "../Buttons/Button"
 import ImageUpload from "../../assets/ImageUpload"
 
 function CreateArticle() {
-  const [file, setFile] = useState<any>(undefined);
-  const history = useHistory();
+  const [file, setFile] = useState<any>(undefined)
+  const [preview, setPreview] = useState<any>()
+  const history = useHistory()
 
   function handleChange(e: any) {
-    setFile(e.target.files[0]);
+    setFile(e.target.files[0])
+    const reader = new FileReader()
+    reader.onload = function (e) {
+      setPreview(e.target.result)
+    }
+
+    reader.readAsDataURL(e.target.files[0])
   }
 
   async function handleUpload(e: any) {
-    e.preventDefault();
+    e.preventDefault()
 
     if (file !== undefined) {
-      const uploadTask = app.storage().ref(`/images/${file.name}`).put(file);
-      await uploadTask.on('state_changed', console.log, console.error, () => {
+      const uploadTask = app.storage().ref(`/images/${file.name}`).put(file)
+      await uploadTask.on("state_changed", console.log, console.error, () => {
         app
           .storage()
-          .ref('images')
+          .ref("images")
           .child(file.name)
           .getDownloadURL()
-          .then(url => {
-            setFile(undefined);
-            handlePostUpload(e, url);
-          });
-      });
+          .then((url) => {
+            setFile(undefined)
+            handlePostUpload(e, url)
+          })
+      })
     } else {
-      handlePostUpload(e, '');
+      handlePostUpload(e, "")
     }
   }
 
   async function handlePostUpload(e: any, url: string) {
-    const { content, title } = e.target.elements;
+    const { content, title } = e.target.elements
 
     if (content.value && title.value) {
-      localStorage.setItem('nav', 'home')
+      localStorage.setItem("nav", "home")
       try {
         await createArticle(app.auth().currentUser, {
           media: url,
           title: title.value,
           content: content.value,
         }).then(() => {
-          content.value = '';
-          history.push('/');
-        });
+          content.value = ""
+          history.push("/")
+        })
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
     }
   }
@@ -57,21 +64,28 @@ function CreateArticle() {
   return (
     <form className="create-article" onSubmit={handleUpload}>
       <div className="create-article_image">
-        <ImageUpload />
+        {file ? (
+          <img
+            src={preview}
+            alt="Name of the author"
+          />
+        ) : (
+          <ImageUpload />
+        )}
         <div className="create-article_image_button">
-          Add an image
+          {file ? "Image saved!" : "Add an image!"}
         </div>
-        <input type="file" required name='media' onChange={handleChange}/>
+        <input type="file" required name="media" onChange={handleChange} />
       </div>
       <input
         className="create-article_title"
         type="text"
-        name='title'
+        name="title"
         required
         placeholder="This is your headline"
       />
       <textarea
-        name='content'
+        name="content"
         className="create-article_content"
         required
         placeholder="This is your content"
