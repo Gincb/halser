@@ -147,6 +147,7 @@ function ProfileCard(props: Props) {
           defaultValue={
             props.profileInfo?.description ? props.profileInfo?.description : ""
           }
+          placeholder='Say a few things about yourself here!'
         />
         <div className="profile-card_description_line"></div>
         <ul className="profile-card_description_socials">

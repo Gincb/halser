@@ -14,4 +14,8 @@
   @include mediaQuery(tablet) {
     height: 195px;
   }
+
+  a {
+    text-decoration: none;
+  }
 }

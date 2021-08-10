@@ -41,7 +41,7 @@ function ProfileCard(props: Props) {
         </button>
       </article>
       <article className="profile-card_description">
-        <p>{props.profileInfo?.description}</p>
+        <p>{props.profileInfo?.description ? props.profileInfo.description : 'Say a few things about yourself here!'}</p>
         <div className="profile-card_description_line"></div>
         <ul className="profile-card_description_socials">
           <li>

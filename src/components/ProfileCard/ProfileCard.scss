@@ -14,12 +14,12 @@
     justify-content: space-evenly;
     padding: 1em;
     height: 20em;
-    background-image: url('https://images.unsplash.com/photo-1503435980610-a51f3ddfee50?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80');
+    background-image: url("https://images.unsplash.com/photo-1503435980610-a51f3ddfee50?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80");
     background-position: center;
     background-size: cover;
     border-radius: $button-radius;
 
-    >img {
+    > img {
       height: 11em;
       width: 11em;
       object-fit: cover;
@@ -27,7 +27,7 @@
       border-radius: 50%;
     }
 
-    >h1{
+    > h1 {
       padding: 0.3em 0.8em;
       font-size: $subheading;
       background-color: $light-green;
@@ -42,12 +42,12 @@
       right: 20px;
       width: 5em;
       height: 3em;
-      background-color: $light-blue;
+      background-color: $light-orange;
       text-align: center;
       border-radius: $button-radius;
       border: none;
 
-      >svg {
+      > svg {
         height: 100%;
         transform: rotate(30deg);
       }
@@ -68,7 +68,7 @@
       height: 21em;
     }
 
-    >p {
+    > p {
       font-size: $additional;
 
       @include mediaQuery(laptop) {
@@ -80,7 +80,7 @@
       }
     }
 
-    >ul {
+    > ul {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
@@ -100,7 +100,7 @@
         height: 15em;
       }
 
-      >li {
+      > li {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -112,8 +112,13 @@
           font-style: italic;
         }
 
-        >svg {
+        > svg {
           height: 3.2em;
+        }
+
+        > span {
+          overflow-wrap: anywhere;
+          width: 90%;
         }
       }
     }

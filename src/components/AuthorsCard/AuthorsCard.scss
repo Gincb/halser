@@ -13,11 +13,12 @@
   margin-right: 2em;
   background-color: white;
   border-radius: $border-radius;
+  transition: all 0.3s ease;
 
   @include mediaQuery(tablet) {
     flex-direction: row;
-    min-width: 398px;
-    width: 435px;
+    min-width: 500px;
+    width: 550px;
   }
 
   &_person {
@@ -54,4 +55,8 @@
       height: 80%;
     }
   }
+}
+
+.authors_card:hover {
+  background-color: $light-orange;
 }
