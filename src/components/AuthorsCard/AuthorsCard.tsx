@@ -1,3 +1,5 @@
+import { LazyLoadImage } from "react-lazy-load-image-component"
+
 export type Author = {
   username: string
   image: string
@@ -8,10 +10,10 @@ function AuthorsCard(props: Author) {
   return (
     <article className="authors_card">
       <div className="authors_card_person">
-        <img
+        <LazyLoadImage
           className="authors_card_img"
+          alt={props.username}
           src={props.image}
-          alt="Name of the author"
         />
         <h3 className="authors_card_name">{props.username}</h3>
       </div>

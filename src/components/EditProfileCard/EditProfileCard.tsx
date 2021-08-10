@@ -7,10 +7,23 @@ import Linkedin from "../../assets/Linkedin"
 import Twitter from "../../assets/Twitter"
 import Webpage from "../../assets/Webpage"
 import View from "../../assets/View"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 export type Props = {
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>
-  profileInfo: {username: string, email: string, description?: string, socials?: {twitter?: string, instagram?: string, linkedin?: string, website?: string}, profileImage: string, createdAt: {seconds: number, nanoseconds: number}};
+  profileInfo: {
+    username: string
+    email: string
+    description?: string
+    socials?: {
+      twitter?: string
+      instagram?: string
+      linkedin?: string
+      website?: string
+    }
+    profileImage: string
+    createdAt: { seconds: number; nanoseconds: number }
+  }
 }
 
 function ProfileCard(props: Props) {
@@ -114,17 +127,16 @@ function ProfileCard(props: Props) {
   }
 
   return (
-    <form className="profile-card profile-card-edit" onSubmit={handleAllDataUpload}>
+    <form
+      className="profile-card profile-card-edit"
+      onSubmit={handleAllDataUpload}
+    >
       <div className="profile-card_author">
         <div className="profile-card_author_edit-image">
-          <img
+          <LazyLoadImage
             className="profile-card_author_edit-image_image"
-            src={
-              preview
-                ? preview
-                : props.profileInfo.profileImage
-            }
-            alt="Name of the author"
+            alt={props.profileInfo?.username}
+            src={preview ? preview : props.profileInfo.profileImage}
           />
           <input type="file" onChange={handleChange} />
         </div>
@@ -147,7 +159,7 @@ function ProfileCard(props: Props) {
           defaultValue={
             props.profileInfo?.description ? props.profileInfo?.description : ""
           }
-          placeholder='Say a few things about yourself here!'
+          placeholder="Say a few things about yourself here!"
         />
         <div className="profile-card_description_line"></div>
         <ul className="profile-card_description_socials">
