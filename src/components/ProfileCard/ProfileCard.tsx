@@ -7,16 +7,29 @@ import Linkedin from "../../assets/Linkedin"
 import Twitter from "../../assets/Twitter"
 import Webpage from "../../assets/Webpage"
 import EditProfile from "../../assets/EditProfile"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
 export type Props = {
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>
-  profileInfo: {username: string, email: string, description?: string, socials?: {twitter?: string, instagram?: string, linkedin?: string, website?: string}, profileImage: string, createdAt: {seconds: number, nanoseconds: number}};
+  profileInfo: {
+    username: string
+    email: string
+    description?: string
+    socials?: {
+      twitter?: string
+      instagram?: string
+      linkedin?: string
+      website?: string
+    }
+    profileImage: string
+    createdAt: { seconds: number; nanoseconds: number }
+  }
   setProfileInformation: (arg) => void
 }
 
 function ProfileCard(props: Props) {
   useEffect(() => {
-    const profileState = props.setProfileInformation;
+    const profileState = props.setProfileInformation
     getUserDoc(app.auth().currentUser).then((data) => {
       profileState(data)
     })
@@ -31,7 +44,10 @@ function ProfileCard(props: Props) {
   return (
     <section className="profile-card">
       <article className="profile-card_author">
-        <img src={props.profileInfo?.profileImage} alt="Name of the author" />
+        <LazyLoadImage
+          alt={props.profileInfo?.username}
+          src={props.profileInfo?.profileImage}
+        />
         <h1>{"@" + props.profileInfo?.username}</h1>
         <button
           className="profile-card_author_edit"
@@ -41,7 +57,11 @@ function ProfileCard(props: Props) {
         </button>
       </article>
       <article className="profile-card_description">
-        <p>{props.profileInfo?.description ? props.profileInfo.description : 'Say a few things about yourself here!'}</p>
+        <p>
+          {props.profileInfo?.description
+            ? props.profileInfo.description
+            : "Say a few things about yourself here!"}
+        </p>
         <div className="profile-card_description_line"></div>
         <ul className="profile-card_description_socials">
           <li>

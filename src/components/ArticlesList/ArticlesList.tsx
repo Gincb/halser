@@ -1,4 +1,5 @@
 import ArticleCard from "../ArticleCard/ArticleCard"
+import Loader from "react-loader-spinner"
 
 export type Props = {
   articles: any
@@ -7,9 +8,11 @@ export type Props = {
 }
 
 function ArticlesList(props: Props) {
-  return (
-    props.loading ? <h1>Loading</h1> :
-
+  return props.loading ? (
+    <div className="loader">
+      <Loader type="ThreeDots" color="#8DC9B4" height={100} width={100} />
+    </div>
+  ) : (
     <section className="articles">
       {props.articles ? (
         props.articles.map((article: any) => {
@@ -25,7 +28,9 @@ function ArticlesList(props: Props) {
           )
         })
       ) : (
-        <h1>loading</h1>
+        <div className="loader">
+          <Loader type="ThreeDots" color="#8DC9B4" height={100} width={100} />
+        </div>
       )}
       {props.error && <h3>Error, no content found</h3>}
     </section>
