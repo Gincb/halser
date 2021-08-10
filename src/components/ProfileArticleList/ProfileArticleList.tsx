@@ -15,7 +15,7 @@ function ProfileArticleList(props: Props) {
 
   return (
     <div className='profile-posts'>
-      <h2 className='profile-posts_header'>{articles?.length + ' Posts'}</h2>
+      <h1 className='home_article_title profile-posts_title '>{articles?.length + ' Created Articles'}</h1><div className='home_articles_line profile-posts_line'></div>
       <div className='profile-posts_list'>
         {articles && articles.length !== 0 ? (
             articles.map((article: any) => {

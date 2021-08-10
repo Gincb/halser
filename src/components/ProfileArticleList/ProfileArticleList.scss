@@ -1,0 +1,42 @@
+@use '../../style/variables.scss' as *;
+@use '../../style/mediaQueriesMixin.scss' as *;
+
+.profile-posts {
+  &_title {
+    display: inline-block;
+    margin: 3.5em 0 0;
+    width: 100%;
+
+    @include mediaQuery(tablet) {
+      margin: 3.5em 1em 2em 0;
+      width: 50%;
+    }
+
+    @include mediaQuery(laptop) {
+      width: 35%;
+    }
+
+    @include mediaQuery(laptop_large) {
+      width: 24%;
+    }
+  }
+
+  &_line {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1em;
+
+    @include mediaQuery(tablet) {
+    margin-bottom: 0;
+      width: 43%;
+    }
+
+    @include mediaQuery(laptop) {
+      width: 60%;
+    }
+
+    @include mediaQuery(laptop_large) {
+      width: 73%;
+    }
+  }
+}

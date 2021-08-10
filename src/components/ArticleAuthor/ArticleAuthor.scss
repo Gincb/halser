@@ -11,10 +11,14 @@
   > img {
     height: 80px;
     width: 80px;
-    margin-right: 1.5em;
+    margin-right: 0.5em;
     border-radius: 50%;
     object-position: center;
     object-fit: cover;
+
+    @include mediaQuery(tablet) {
+      margin-right: 1.5em;
+    }
   }
 
   > h1 {
