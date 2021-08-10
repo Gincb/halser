@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getCollection } from "../FirebaseApp"
 import AuthorsCard from "../AuthorsCard/AuthorsCard"
 import { Link } from "react-router-dom"
+import Loader from "react-loader-spinner"
 
 function AuthorsList() {
   const [authors, setAuthors] = useState<any>(null)
@@ -35,7 +36,9 @@ function AuthorsList() {
           )
         })
       ) : (
-        <h1>loading</h1>
+        <div className="loader">
+          <Loader type="ThreeDots" color="#8DC9B4" height={100} width={100} />
+        </div>
       )}
     </section>
   )

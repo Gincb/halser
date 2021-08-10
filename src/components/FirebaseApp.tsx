@@ -38,7 +38,7 @@ export async function createUserDocument(user: any
     if (!snapshot.exists) {
       const { email } = user;
       const { username } = additionalData;
-      const profileImage = 'https://images.unsplash.com/photo-1514813482567-2858e6c00ee1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+      const profileImage = 'https://images.unsplash.com/photo-1611034540516-665df2bbdfd9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80'
 
       try {
         userRef.set({ username, email, createdAt: new Date(), profileImage});

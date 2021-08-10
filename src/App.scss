@@ -49,3 +49,13 @@ html {
     border-radius: 50%;
   }
 }
+
+.loader {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  background: var(--wrapper-bg-color);
+  padding: 5em;
+  border-radius: var(--border-radius);
+}
